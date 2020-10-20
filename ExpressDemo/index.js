@@ -38,5 +38,6 @@ app.get("/api/posts/:year/:month", (req, res) => {
 });
 
 app.listen(port, () => {
+  it;
   console.log(`listening to port ${port} ...`);
 });
