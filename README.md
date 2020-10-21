@@ -40,3 +40,7 @@ require module take under consideration that arg is
 ## dev-dependencies
 
 only for development env dependency
+
+## Middleware function
+
+A middleware function is a function that takes req and either gives a response or pass it to another middleware function.

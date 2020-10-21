@@ -1,8 +1,11 @@
+const morgan = require("morgan");
+const helmet = require("helmet");
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 const Joi = require("joi");
-
+const logger = require("./logger");
+const authenticator = require("./auth");
 const courses = [
   {
     id: 1,
@@ -14,7 +17,20 @@ const courses = [
   },
 ];
 
+// middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
+app.use(helmet());
+
+if (app.get("env") === "development") {
+  app.use(morgan("tiny"));
+  console.log("Morgan enabled .");
+}
+
+//custom middleware
+app.use(logger);
+app.use(authenticator);
 
 app.get("/", (req, res) => {
   res.send("Hello World!!");
