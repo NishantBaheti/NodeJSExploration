@@ -1,11 +1,12 @@
+const config = require("config");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 const Joi = require("joi");
-const logger = require("./logger");
-const authenticator = require("./auth");
+const logger = require("./middleware/logger");
+const authenticator = require("./middleware/auth");
 const courses = [
   {
     id: 1,
@@ -22,6 +23,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(helmet());
+
+console.log("Application Name :" + config.get("name"));
+console.log("Mail server :" + config.get("mail.host"));
 
 if (app.get("env") === "development") {
   app.use(morgan("tiny"));
