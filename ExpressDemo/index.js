@@ -18,6 +18,9 @@ const courses = [
   },
 ];
 
+//application setting
+app.set("view engine", "pug");
+
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
