@@ -44,3 +44,21 @@ only for development env dependency
 ## Middleware function
 
 A middleware function is a function that takes req and either gives a response or pass it to another middleware function.
+
+## Handing Asynchronous code
+
+1. Callbacks
+1. Promises
+1. Async/ Await
+
+### Callbacks Hell / X-mas tree problem
+
+- Callbacks can create nested structure that can go very deep based on application complexity. eg-
+
+        getUser(1, (userObj) => {
+            console.log(userObj);
+
+                getRepositories(userObj.username, (repoObj) => {
+                    console.log(repoObj);
+                });
+        });
