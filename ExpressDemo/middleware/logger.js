@@ -1,6 +1,6 @@
-function log(req, res, next) {
+function Logger(req, res, next) {
   console.log("Logging ...");
   next();
 }
 
-module.exports = log;
+module.exports = Logger;
