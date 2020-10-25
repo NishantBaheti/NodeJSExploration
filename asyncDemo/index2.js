@@ -1,5 +1,5 @@
 console.log("Before");
-getUser(1, getRepositories);
+getUser(1, getRepositories1);
 
 console.log("After");
 
@@ -15,12 +15,12 @@ function printCommit(commitObj) {
 
 function getCommit(repoObj) {
   console.log(repoObj);
-  getLatestCommitId(repoObj.repositories[0], printCommit(commitObj));
+  getLatestCommitId(repoObj.repositories[0], printCommit);
 }
 
-function getRepositories(userObj) {
+function getRepositories1(userObj) {
   console.log(userObj);
-  getRepositories(userObj.username, getCommit(repoObj));
+  getRepositories(userObj.username, getCommit);
 }
 
 function getUser(id, callback) {

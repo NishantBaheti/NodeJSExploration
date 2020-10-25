@@ -62,3 +62,10 @@ A middleware function is a function that takes req and either gives a response o
                     console.log(repoObj);
                 });
         });
+
+### Promises
+
+- Holds the eventual result of an asynchronous operation
+- It will be in pending state
+- Now Promise can be either fulfilled successfully and a result is returned
+- Or It can be in a rejected state and error is returned
