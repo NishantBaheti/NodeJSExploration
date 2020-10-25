@@ -22,6 +22,39 @@ const courseSchema = new mongoose.Schema({
   isPublished: Boolean,
 });
 
+const Course = mongoose.model("course", courseSchema);
+
+async function createCourse() {
+  const courseObj = new Course({
+    name: "DL",
+    author: "Nishant",
+    tags: ["AI", "Python"],
+    isPublished: true,
+  });
+
+  const result = await courseObj.save();
+  console.log(result);
+}
+
+// createCourse();
+async function getCourses(filter) {
+  const courses = await Course.find(filter);
+  console.log(courses);
+}
+
+async function getCoursesWithLimit(filter, limit) {
+  const courses = await Course.find(filter).limit(limit).sort({ name: 1 });
+  console.log(courses);
+}
+// getCourses({});
+// getCourses({
+//   author: "Nishant",
+//   isPublished: true,
+// });
+
+getCoursesWithLimit({}, null);
+getCoursesWithLimit({}, 1);
+
 // app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
 
