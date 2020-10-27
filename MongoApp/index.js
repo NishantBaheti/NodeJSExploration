@@ -37,6 +37,7 @@ async function createCourse() {
 }
 
 // createCourse();
+
 async function getCourses(filter) {
   const courses = await Course.find(filter);
   console.log(courses);
@@ -52,8 +53,8 @@ async function getCoursesWithLimit(filter, limit) {
 //   isPublished: true,
 // });
 
-getCoursesWithLimit({}, null);
-getCoursesWithLimit({}, 1);
+// getCoursesWithLimit({}, null);
+// getCoursesWithLimit({}, 1);
 
 // app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
