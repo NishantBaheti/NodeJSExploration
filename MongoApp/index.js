@@ -4,66 +4,20 @@ const log = new Logger().log;
 const app = express();
 const port = process.env.PORT || 3000;
 
-const mongoose = require("mongoose");
-mongoose
-  .connect("mongodb://localhost/playground")
-  .then(() => {
-    console.log("Connected to MongoDB..");
-  })
-  .catch((err) => {
-    console.log("Could not connect to MongoDB");
-  });
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-const courseSchema = new mongoose.Schema({
-  name: String,
-  author: String,
-  tags: [String],
-  date: { type: Date, default: Date.now },
-  isPublished: Boolean,
+app.use(log);
+
+// home route
+const homeRouter = require("./routes/home");
+app.use("/", homeRouter);
+
+// course route
+const courseRouter = require("./routes/course");
+app.use("/api/courses", courseRouter);
+
+// listen
+app.listen(port, () => {
+  console.log("App is listening to port :", port);
 });
-
-const Course = mongoose.model("course", courseSchema);
-
-async function createCourse() {
-  const courseObj = new Course({
-    name: "DL",
-    author: "Nishant",
-    tags: ["AI", "Python"],
-    isPublished: true,
-  });
-
-  const result = await courseObj.save();
-  console.log(result);
-}
-
-// createCourse();
-
-async function getCourses(filter) {
-  const courses = await Course.find(filter);
-  console.log(courses);
-}
-
-async function getCoursesWithLimit(filter, limit) {
-  const courses = await Course.find(filter).limit(limit).sort({ name: 1 });
-  console.log(courses);
-}
-// getCourses({});
-// getCourses({
-//   author: "Nishant",
-//   isPublished: true,
-// });
-
-// getCoursesWithLimit({}, null);
-// getCoursesWithLimit({}, 1);
-
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-
-// app.use(log);
-
-// const homeRouter = require("./routes/home");
-// app.use("/", homeRouter);
-
-// app.listen(port, () => {
-//   console.log("App is listening to port :", port);
-// });

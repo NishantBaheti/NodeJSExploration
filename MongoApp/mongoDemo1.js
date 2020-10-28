@@ -21,18 +21,31 @@ const Course = mongoose.model("course", courseSchema);
 
 async function createCourse() {
   const courseObj = new Course({
-    name: "ML+DL",
+    name: "Devops",
     author: "Nishant",
-    tags: ["AI", "Python"],
+    tags: ["Docker", "Python"],
     isPublished: true,
     price: 35,
   });
 
-  const result = await courseObj.save();
-  console.log(result);
+  try {
+    // courseObj.validate((err) => {
+    //   if (err) {
+    //     console.log("ERROR :", err);
+    //   }
+    //   else{
+    //     const result = await courseObj.save();
+    //     console.log(result);
+    //   }
+    // });
+    const result = await courseObj.save();
+    console.log(result);
+  } catch (e) {
+    console.log("Error :", err);
+  }
 }
 
-// createCourse();
+createCourse();
 
 // mongoose filer keywords
 // eq (equal)

@@ -69,3 +69,12 @@ async function udpateCourse(id) {
 }
 
 // udpateCourse("5f98363ef31fdd4ce34db4b9");
+
+async function removeCourse(id) {
+  //   const result = await Course.deleteMany({ _id: id });
+  //   console.log(result);
+  const course = await Course.findByIdAndDelete(id);
+  console.log(course);
+}
+
+// removeCourse("5f98363ef31fdd4ce34db4b9");
