@@ -29,7 +29,6 @@ router.get("/:id",async (req, res) => {
   }
 });
 
-
 router.post("/",async (req,res) => {
   try{
     let genre = Genre.build({
@@ -58,5 +57,24 @@ router.put("/:id",async (req,res) => {
     res.status(400).send(err);
   }
 });
+
+router.delete("/:id",async (req,res) => {
+  try{
+    let result = await Genre.destroy({
+      where : {
+        id : req.params.id
+      }
+    });
+    res
+      .status(200)
+      .send(result);
+  }
+  catch(err){
+    res
+      .status(400)
+      .send(err);
+  }
+});
+
 
 module.exports = router;

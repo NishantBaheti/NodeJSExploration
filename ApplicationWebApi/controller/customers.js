@@ -28,7 +28,6 @@ router.get("/:id",async (req, res) => {
   }
 });
 
-
 router.post("/",async (req,res) => {
   try{
     let customer = Customer.build({
@@ -59,6 +58,24 @@ router.put("/:id",async (req,res) => {
   }
   catch(err){
     res.status(400).send(err);
+  }
+});
+
+router.delete("/:id",async (req,res) => {
+  try{
+    let result = await Customer.destroy({
+      where : {
+        id : req.params.id
+      }
+    });
+    res
+      .status(200)
+      .send(result);
+  }
+  catch(err){
+    res
+      .status(400)
+      .send(err);
   }
 });
 
